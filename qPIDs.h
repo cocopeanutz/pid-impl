@@ -25,6 +25,7 @@
 #define __qPID_CONTROLLER_H__
 
 #include <stdint.h>
+#include <cstddef>
 
 //================================================================
 // Types

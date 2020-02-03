@@ -69,13 +69,13 @@ float qPID_Process_(qPID *q, float Input, float PV, float terms[])
 
     // Proportional gain
     Up = Kp * (((q->b) * (Input)) - PV);
-
+    printf("Up: %f, ", Up);
     // Deriative gain with filter
     Ud = Kd_a * (q->ctx.Ud_old) - Kd_b * (PV - q->ctx.PV_old) + Kd_c * (Input - q->ctx.SP_old);
-
+    printf("Ud: %f, ", Ud);
     // Get last integral
     Ui =  q->ctx.Ui_old;
-
+    printf("Ui: %f, ", Ui);
     // Calculate controler output for Automatic or manual mode
 
     switch (q->Mode) {
@@ -90,6 +90,7 @@ float qPID_Process_(qPID *q, float Input, float PV, float terms[])
 
         case AUTOMATIC:
             ControllerOutput =  Up + Ui + Ud;
+            printf("ControllerOutput: %f, ", ControllerOutput);
             if (ControllerOutput > q->OutputMax) {
                 ControllerOutput = q->OutputMax;
             } else if (ControllerOutput < q->OutputMin) {
